@@ -20,7 +20,7 @@ function getPorts() {
 	if (err) throw err;
 	services = [];
 	for (i in config.services) {
-	    service = {
+	    var service = {
 		port: i,
 		name: config.services[i],
 		active: false
