@@ -10,7 +10,7 @@
     },
     "repository": {
 	"type": "git",
-	"url": "https://gitlab.com/Emeraude/annuaire80"
+	"url": "git@gitlab.com:Emeraude/annuaire80.git"
     },
     "license": "WTFPL",
     "dependencies": {
