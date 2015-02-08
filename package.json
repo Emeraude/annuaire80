@@ -1,0 +1,23 @@
+{
+    "name": "Annuaire80",
+    "version": "1.0.0",
+    "description": "Status checker for multiple services",
+    "main": "index.js",
+    "author": {
+	"name": "Emeraude",
+	"email": "broggi_t@epitech.eu",
+	"url": "http://broggit.me"
+    },
+    "repository": {
+	"type": "git",
+	"url": "https://gitlab.com/Emeraude/annuaire80"
+    },
+    "license": "WTFPL",
+    "dependencies": {
+	"compression": "~1.4.0",
+	"express": "~4.11.2",
+	"jade": "~1.9.2",
+	"node-libnmap": "~0.1.12",
+	"serve-static": "~1.8.1"
+    }
+}

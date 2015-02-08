@@ -1,0 +1,16 @@
+doctype html
+html(lang='fr')
+  head
+    meta(name='author', content='Emeraude')
+    meta(charset='utf-8')
+    title=title
+    link(rel='stylesheet', href='/style.css')
+  body
+    each service in services
+      if service.active
+        div
+          a.active(href=location+':'+service.port, target='_blank')
+            =(service.port + ': ' + service.name)
+      else
+        div.inactive
+          =(service.port + ': ' + service.name)

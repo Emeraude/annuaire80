@@ -1,0 +1,8 @@
+{
+    "services": {
+	"8080": "Annuaire80"
+    },
+    "port": 8080,
+    "title": "Annuaire80",
+    "time": 10
+}

@@ -1,0 +1,30 @@
+body {
+    background-color: black;
+    text-align: center;
+}
+
+a {
+    text-decoration: none
+}
+
+.active {
+    color: green;
+    text-shadow: 0 0 10px lightgreen;
+}
+
+.active:hover {
+    text-decoration: underline;
+}
+
+.active::before {
+    content: '✓';
+}
+
+.inactive {
+    color: red;
+    text-shadow: 0 0 10px #faa;
+}
+
+.inactive::before {
+    content: '✗';
+}
