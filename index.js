@@ -8,14 +8,14 @@ var services;
 var portsRange = '';
 
 for (i in config.services) {
-    ;
+    portsRange += i + ',';
 }
-
+portsRange = portsRange.substring(0, portsRange.length - 1);
 
 function getPorts() {
     require('node-libnmap').nmap('scan', {
 	range: ['127.0.0.1'],
-	ports: '1-65535'
+	ports: portsRange
     }, function(err, report) {
 	if (err) throw err;
 	services = [];
