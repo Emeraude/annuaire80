@@ -25,8 +25,10 @@ This is an example of configuration file:
 	"services": { // the list of services
 		"80": "Annuaire80" // the key is the port, the value is the display name
 	},
+	"host": "127.0.0.1", // the server to check the ports
 	"port": 80, // the port used by Annuaire80
 	"title": "Annuaire80", // the title of the page
+	"protocol": "http", // the protocol used for the links
 	"time": 10 // the delay in seconds between two updates of the active services list
 }
 ```

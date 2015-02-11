@@ -3,7 +3,6 @@
 var app = require('express')();
 var server = require('http').Server(app);
 var config = require('./config.json');
-var url = require('url');
 var services;
 var portsRange = '';
 
@@ -14,7 +13,7 @@ portsRange = portsRange.substring(0, portsRange.length - 1);
 
 function getPorts() {
     require('node-libnmap').nmap('scan', {
-	range: ['127.0.0.1'],
+	range: [config.host],
 	ports: portsRange
     }, function(err, report) {
 	if (err) throw err;
@@ -27,7 +26,7 @@ function getPorts() {
 	    };
 	    for (j in report[0][0].ports)
 		if (report[0][0].ports[j].port == service.port)
-		    service.active = true;
+		    service.active = report[0][0].ports[j].state == 'open';
 	    services.push(service);
 	}
     });
@@ -41,8 +40,7 @@ app.engine('jade', require('jade').__express)
     .use(require('compression')())
     .use(require('serve-static')('public/'))
     .get('*', function(req, res) {
-	parsedUrl = url.parse('http://' + req.headers.host);
 	res.render('home.jade', {title: config.title,
 				 services: services,
-				 location: parsedUrl.protocol + '//' + parsedUrl.hostname});
+				 location: config.protocol + '://' + config.host});
     });
