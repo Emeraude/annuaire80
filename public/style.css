@@ -1,6 +1,7 @@
 body {
     background-color: black;
     text-align: center;
+    text-shadow: 0 0 10px;
 }
 
 a {
@@ -9,7 +10,6 @@ a {
 
 .active {
     color: green;
-    text-shadow: 0 0 10px lightgreen;
 }
 
 .active:hover {
@@ -22,7 +22,6 @@ a {
 
 .inactive {
     color: red;
-    text-shadow: 0 0 10px #faa;
 }
 
 .inactive::before {

@@ -16,7 +16,7 @@ function getPorts() {
 	range: [config.host],
 	ports: portsRange
     }, function(err, report) {
-	if (err) throw err;
+	if (err) return;
 	services = [];
 	for (i in config.services) {
 	    var service = {
