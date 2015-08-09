@@ -8,15 +8,15 @@ a {
     text-decoration: none
 }
 
-.active {
-    color: green;
-}
-
-.active:hover {
+a:hover {
     text-decoration: underline;
 }
 
-.active::before {
+.active > a {
+    color: green;
+}
+
+.active > a::before {
     content: '✓';
 }
 

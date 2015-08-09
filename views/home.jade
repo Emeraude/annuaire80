@@ -5,14 +5,15 @@ html(lang='fr')
     meta(charset='utf-8')
     title=title
     link(rel='stylesheet', href='/style.css')
+    script(src='/jquery-1.11.3.min.js')
     script(src='/socket.io/socket.io.js')
     script(src='/index.js')
   body
     each service, port in services
       if service.active
-        div
-          a.active(href=location+':'+port, target='_blank')
+        div.active(data-port=port)
+          a(href=location+':'+port, target='_blank')
             =(port + ': ' + service.name)
       else
-        div.inactive
+        div.inactive(data-port=port)
           =(port + ': ' + service.name)

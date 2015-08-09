@@ -47,7 +47,9 @@ app.engine('jade', require('jade').__express)
   });
 
 io.on('connection', function(socket) {
+  servicesState.removeAllListeners('update');
   servicesState.on('update', function(data) {
+    socket.broadcast.emit('update', data);
     socket.emit('update', data);
   });
 });
