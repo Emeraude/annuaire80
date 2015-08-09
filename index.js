@@ -2,13 +2,15 @@
 
 var app = require('express')();
 var server = require('http').Server(app);
+var io = require('socket.io')(server);
 var config = require('./config.json');
+var servicesState = new (require('events')).EventEmitter();
 var services = {};
 var portsRange = '';
 
 for (i in config.services) {
   portsRange += i + ',';
-  services[i] = {name: config.services[i], active: false};
+  services[i] = {name: config.services[i], active: false, port: i};
 }
 portsRange = portsRange.substring(0, portsRange.length - 1);
 
@@ -18,8 +20,16 @@ function getPorts() {
     ports: portsRange
   }, function(err, report) {
     if (err) return;
-    for (i in report[0][0].ports)
-      services[report[0][0].ports[i].port].active = report[0][0].ports[i].state == 'open';
+    var updatedServices = [];
+    for (i in report[0][0].ports) {
+      var service = services[report[0][0].ports[i].port];
+      if (service.active != (report[0][0].ports[i].state == 'open')) {
+	updatedServices.push(service);
+	service.active = report[0][0].ports[i].state == 'open';
+      }
+    }
+    if (updatedServices.length)
+	servicesState.emit('update', updatedServices);
   });
   setTimeout(getPorts, config.time * 1000);
 }
@@ -35,3 +45,9 @@ app.engine('jade', require('jade').__express)
 			     services: services,
 			     location: config.protocol + '://' + config.host});
   });
+
+io.on('connection', function(socket) {
+  servicesState.on('update', function(data) {
+    socket.emit('update', data);
+  });
+});
