@@ -34,8 +34,6 @@ This is an example of configuration file:
 }
 ```
 
-Note that protocol is not ignored on real time update.
-
 ### Author
 
 Emeraude

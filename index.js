@@ -48,8 +48,13 @@ app.engine('jade', require('jade').__express)
 
 io.on('connection', function(socket) {
   servicesState.removeAllListeners('update');
-  servicesState.on('update', function(data) {
-    socket.broadcast.emit('update', data);
-    socket.emit('update', data);
+  servicesState.on('update', function(services) {
+    var datas = {
+      host: config.host,
+      protocol: config.protocol,
+      services: services
+    };
+    socket.broadcast.emit('update', datas);
+    socket.emit('update', datas);
   });
 });
