@@ -6,11 +6,11 @@ html(lang='fr')
     title=title
     link(rel='stylesheet', href='/style.css')
   body
-    each service in services
+    each service, port in services
       if service.active
         div
-          a.active(href=location+':'+service.port, target='_blank')
-            =(service.port + ': ' + service.name)
+          a.active(href=location+':'+port, target='_blank')
+            =(port + ': ' + service.name)
       else
         div.inactive
-          =(service.port + ': ' + service.name)
+          =(port + ': ' + service.name)

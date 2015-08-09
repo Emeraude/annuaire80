@@ -3,11 +3,12 @@
 var app = require('express')();
 var server = require('http').Server(app);
 var config = require('./config.json');
-var services;
+var services = {};
 var portsRange = '';
 
 for (i in config.services) {
   portsRange += i + ',';
+  services[i] = {name: config.services[i], active: false};
 }
 portsRange = portsRange.substring(0, portsRange.length - 1);
 
@@ -17,18 +18,8 @@ function getPorts() {
     ports: portsRange
   }, function(err, report) {
     if (err) return;
-    services = [];
-    for (i in config.services) {
-      var service = {
-	port: i,
-	name: config.services[i],
-	active: false
-      };
-      for (j in report[0][0].ports)
-	if (report[0][0].ports[j].port == service.port)
-	  service.active = report[0][0].ports[j].state == 'open';
-      services.push(service);
-    }
+    for (i in report[0][0].ports)
+      services[report[0][0].ports[i].port].active = report[0][0].ports[i].state == 'open';
   });
   setTimeout(getPorts, config.time * 1000);
 }
