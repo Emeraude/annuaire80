@@ -1,10 +1,10 @@
 {
-    "services": {
-	"8080": "Annuaire80"
-    },
-    "host": "127.0.0.1",
-    "port": 8080,
-    "title": "Annuaire80",
-    "protocol": "http",
-    "time": 10
+  "services": {
+    "8080": "Annuaire80"
+  },
+  "host": "127.0.0.1",
+  "port": 8080,
+  "title": "Annuaire80",
+  "protocol": "http",
+  "time": 10
 }
