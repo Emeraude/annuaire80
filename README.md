@@ -1,13 +1,14 @@
 # Annuaire80
 
 A simple services status checker written in node.js.  
-If you have multiple services using differents ports, it will give you those who are active and those who are inactive, based on the status of the port.
+If you have multiple services using differents ports, it will give you those who are active and those who are inactive, based on the status of the port.  
+It will be updated in real time.
 
 ## Installation
 
 ```bash
 npm install --python=python2
-mv config.json.default config.json
+cp config.json.default config.json
 ```
 
 ## Usage
@@ -32,6 +33,8 @@ This is an example of configuration file:
 	"time": 10 // the delay in seconds between two updates of the active services list
 }
 ```
+
+Note that protocol is not ignored on real time update.
 
 ### Author
 
