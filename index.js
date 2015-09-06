@@ -40,11 +40,14 @@ server.listen(config.port);
 app.engine('jade', require('jade').__express)
   .use(require('compression')())
   .use(require('serve-static')('public/'))
-  .get('*', function(req, res) {
+  .get('/json', function(req, res) {
+    res.send(services);
+  })
+  .use(function(req, res, next) {
     res.render('home.jade', {title: config.title,
 			     services: services,
 			     location: config.protocol + '://' + config.host});
-  });
+  })
 
 io.on('connection', function(socket) {
   servicesState.removeAllListeners('update');

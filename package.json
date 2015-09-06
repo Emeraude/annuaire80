@@ -1,6 +1,6 @@
 {
   "name": "Annuaire80",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Status checker for multiple services",
   "main": "index.js",
   "author": {

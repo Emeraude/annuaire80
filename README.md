@@ -34,6 +34,21 @@ This is an example of configuration file:
 }
 ```
 
+## API
+### GET /json
+
+Get all the services as json, with this format:
+
+```json
+{
+	PORT: {
+		"name": NAME,
+		"active": true,
+		"port": PORT
+	}
+}
+```
+
 ### Author
 
 Emeraude
